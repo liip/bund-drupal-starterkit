@@ -1,7 +1,7 @@
 Bund-Starterkit for Drupal 8
 ============================
 
-# What is Bund-starterkit?
+# What is Bund-Starterkit?
 The Bund-Starterkit provides theme and elements based on the official styleguide (version 3.0.0) of the Swiss Federal Administration: http://swiss.github.io/styleguide.
 This kit provides a base to quickly implement a website running on Drupal 8 for the Swiss Federal Administration.
 
@@ -15,29 +15,32 @@ Currently, it provides the following elements:
 - Responsive theme for these elements
 
 # Backend requirements
-Follow the Drupal 8 requirements in https://www.drupal.org/requirements.
+- Drupal 8 requirements in https://www.drupal.org/requirements.
+- Drush 8 or later
+- Composer (latest)
 
 # Project installation
 
-- Get code source
+Download the project (https://github.com/liip/bund-drupal-starterkit/archive/master.zip) and extract it in your work directory. Rename it as you want, let's call it `PROJECT_ROOT` for the rest of this procedure.
+
+Then open a terminal
 
 ```
-# Clone the project
-git clone git@gitlab.liip.ch:d8workshop/bund-starterkit.git
+# Install the project with composer
+cd PROJECT_ROOT
+composer install
 
-# Enable git submodule to get Bund styleguide sources
-cd bund-starterkit/themes/bund/styleguide
-git submodule init
-git submodule update
 ```
 
-- Prepare vhost and hosts files
-- You can run the installation in the browser by selecting the "Bund profile"
+- Prepare vhost (make sure to point in the `PROJECT_ROOT/web` directory)
+- Update your hosts file with the local domain you just set in the vhost
+- Now you can run the installation in the browser by selecting the "Bund profile"
   and following the several installation steps or by doing it with drush command
   below:
 
 ```
-drush site-install  bund_profile \
+cd PROJECT_ROOT/web
+drush site-install bund_drupal_starterkit_profile \
 site-default-country=CH date-default-timezone="Europe/Zurich" \
 --db-url=mysql://DBUSERNAME:DBPASSWORD@127.0.0.1/db_name \
 --account-mail="admin@example.com" \
@@ -54,7 +57,7 @@ contents are displayed.
 
 ```
 # Enable migrate_tools and bund_dummy_content modules
-drush en -y migrate_tools bund_dummy_content
+drush en -y migrate_tools bund_drupal_starterkit_dummycontent
 
 # Display migration status
 drush ms
@@ -66,7 +69,7 @@ drush mi menu_item
 drush mr menu_item
 ```
 
-You can import real data for the menu items by editing the file: `modules/custom/bund_dummy_content/data/navigation_menu_item.csv`.
+To import your own menu items you can use the module bund_drupal_starterkit_dummycontent as an example. It uses a CSV file located in: `modules/custom/bund_drupal_starterkit_dummycontent/data/navigation_menu_item.csv`.
 
 Make sure to respect the structure: `MENU_NAME;ID;Parent_ID;Level_1;Level_2;Level_3`:
 
@@ -109,6 +112,7 @@ on the block you would like to delete.
 
 This starterkit use the official styleguide (version 3.0.0) as a submodule. All existing CSS/JS files and assets are imported and available per default, but not necessary integrated as a drupal module at the moment. We highly encourage you to check the official styleguide ( http://swiss.github.io/styleguide/en/index.html ) before adding any new CSS style to your project. Furthermore, we invite you to share any Drupal template matching the styleguide you would develop for your project.
 
+To extend the theme, create a new subtheme based on bund_drupal_starterkit_theme and do not edit the one in theme/contrib, otherwise your changes can be overwritten when doing an update.
 
 # Frontend requirements
 - node.js

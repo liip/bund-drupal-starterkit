@@ -1,0 +1,90 @@
+{
+    "name": "liip/bund-drupal-starterkit",
+    "description": "Provides a base to quickly implement a website running on Drupal 8 for the Swiss Federal Administration",
+    "type": "project",
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Karine Chor",
+            "email": "karine.chor@liip.ch"
+        },
+        {
+            "name": "Sylvain Aerni",
+            "email": "sylvain.aerni@liip.ch"
+        },
+        {
+            "name": "Valentin Delley",
+            "email": "valentin.delley@liip.ch"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.drupal-composer.org"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liip/bund_drupal_starterkit_theme.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liip/bund_drupal_starterkit_dummycontent.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/liip/bund_drupal_starterkit_profile.git"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.0.20",
+        "drupal-composer/drupal-scaffold": "^1.3.1",
+        "cweagans/composer-patches": "~1.0",
+        "drupal/core": "~8.1",
+        "drupal/adminimal_theme": "^8.1",
+        "drupal/admin_toolbar": "^8.1",
+        "drupal/config_devel": "8.1.x-dev",
+        "drupal/config_installer": "^8.1",
+        "liip/bund_drupal_starterkit_theme": "dev-master",
+        "liip/bund_drupal_starterkit_dummycontent": "dev-master",
+        "liip/bund_drupal_starterkit_profile": "dev-master"
+    },
+    "require-dev": {
+        "behat/mink": "~1.6",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "^1.1@dev",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "2.7.*"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        }
+    }
+}
