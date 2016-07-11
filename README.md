@@ -31,13 +31,14 @@ cd PROJECT_ROOT
 composer install
 
 ```
-Composer is binding together for us the following sub-repositories:
+For your information, Composer is binding together for us the following sub-repositories:
 
-– a Drupal 8 installer
-– a theme: [bund_drupal_starterkit_theme](https://github.com/liip/bund_drupal_starterkit_theme)
-– an installation profile: [bund_drupal_starterkit_profile](https://github.com/liip/bund_drupal_starterkit_profile)
-– a module for importing menu content: [bund_drupal_starterkit_dummycontent](https://github.com/liip/bund_drupal_starterkit_dummycontent)
+- a Drupal 8 installer
+- a theme: [bund_drupal_starterkit_theme](https://github.com/liip/bund_drupal_starterkit_theme)
+- an installation profile: [bund_drupal_starterkit_profile](https://github.com/liip/bund_drupal_starterkit_profile)
+- a module for importing menu content: [bund_drupal_starterkit_dummycontent](https://github.com/liip/bund_drupal_starterkit_dummycontent)
 
+Continue the installation:
 
 - Prepare vhost (make sure to point in the `PROJECT_ROOT/web` directory)
 - Update your hosts file with the local domain you just set in the vhost
